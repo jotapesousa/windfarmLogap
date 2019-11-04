@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/WEB-INF/template/layout.xhtml">
+
+    <f:metadata>
+        <f:viewAction action="#{parqueEolicoBean.iniciar}" />
+    </f:metadata>
+
+    <ui:define name="head">
+        Listagem de Parques Eólicos
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form class="form-horizontal">
+            <div class="form-group">
+                <h:messages infoClass="alert alert-info"
+                            fatalClass="alert alert-danger"
+                            warnClass="alert alert-warning"
+                            errorClass="alert alert-danger"
+                            style="list-style:none; margin:0; padding:0" />
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-6 col-sm-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               placeholder="Faça uma pesquisa por nome..."
+                               jsf:value="#{parqueEolicoBean.termoPesquisa}" jsf:required="true"
+                               jsf:label="Campo pesquisa"/>
+                        <span class="input-group-btn">
+							<button class="btn btn-default" type="submit"
+                                    jsf:actionListener="#{parqueEolicoBean.pesquisar}">
+								<span class="fa fa-search"></span>
+								Pesquisar
+							</button>
+						</span>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+
+        <h:dataTable styleClass="table table-bordered" var="parque"
+                     value="#{parqueEolicoBean.parques}">
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Nome" />
+                </f:facet>
+
+                <h:outputText value="#{parque.nome}" />
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Latitude" />
+                </f:facet>
+
+                <h:outputText value="#{parque.latitude}" />
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Longitude" />
+                </f:facet>
+
+                <h:outputText value="#{parque.longitude}" />
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Potência Instalada" />
+                </f:facet>
+
+                <h:outputText value="#{parque.potencia_instalada}" />
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Complexo Eólico" />
+                </f:facet>
+
+                <h:outputText value="#{parque.complexo_eolico.nome}" />
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Ações" />
+                </f:facet>
+
+                <h:link outcome="/parqueEolico/detalhes" styleClass="btn-link">
+                    <f:param name="id" value="#{parque.id}" />
+                    <span class="fa fa-lg fa-eye"></span>
+                </h:link>
+
+                <h:link outcome="/parqueEolico/form" styleClass="btn-link">
+                    <f:param name="id" value="#{parque.id}" />
+                    <span class="fa fa-lg fa-edit"></span>
+                </h:link>
+            </h:column>
+        </h:dataTable>
+    </ui:define>
+</ui:composition>

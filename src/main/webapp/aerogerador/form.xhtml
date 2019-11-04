@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/WEB-INF/template/layout.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{aerogeradorBean.aerogerador.id}"  />
+
+        <f:viewAction action="#{aerogeradorBean.buscar}" if="#{param.id ne null}" />
+    </f:metadata>
+
+    <ui:define name="head">
+        #{aerogeradorBean.aerogerador.id eq null ? 'Novo' : 'Editar'} Aerogerador
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+            <div class="form-group">
+                <h:messages infoClass="alert alert-info"
+                            fatalClass="alert alert-danger" errorClass="alert alert-danger"
+                            style="list-style:none; margin:0; padding:0" />
+            </div>
+
+            <div class="form-group">
+                <label>Parque Eólico <span style="color: red">*</span></label>
+                <h:selectOneMenu id="parque"
+                                 value="#{aerogeradorBean.aerogerador.parque_eolico.id}" required="true" class="form-control"
+                                 requiredMessage="Parque Eólico: Campo obrigatório.">
+                    <f:selectItem noSelectionOption="true" itemLabel="Selecione um parque eólico..." />
+                    <f:selectItems value="#{aerogeradorBean.listarParques()}" var="parque"
+                                   itemValue="#{parque.id}" itemLabel="#{parque.nome}"/>
+                </h:selectOneMenu>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Nome <span style="color: red">*</span></label>
+                <input type="text" class="form-control" jsf:value="#{aerogeradorBean.aerogerador.nome}"
+                       jsf:required="true" jsf:requiredMessage="Nome: Campo Obrigatório." jsf:label="Nome" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Latitude</label>
+                <input type="text" class="form-control" jsf:value="#{aerogeradorBean.aerogerador.latitude}" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Longitude</label>
+                <input type="text" class="form-control" jsf:value="#{aerogeradorBean.aerogerador.longitude}" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Altura da Torre</label>
+                <input type="text" class="form-control" jsf:value="#{aerogeradorBean.aerogerador.altura_torre}" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Diâmetro de Varredura</label>
+                <input type="text" class="form-control" jsf:value="#{aerogeradorBean.aerogerador.diametro_varredura}" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Modelo <span style="color: red">*</span></label>
+                <input type="text" class="form-control" jsf:value="#{aerogeradorBean.aerogerador.modelo}"
+                    jsf:required="true" jsf:requiredMessage="Modelo: Campo obrigatório."/>
+            </div>
+
+            <div class="form-group">
+                <h:commandLink action="#{aerogeradorBean.salvar}"
+                               class="btn btn-primary">
+                    <span class="fa fa-save"></span> Salvar
+                </h:commandLink>
+
+                <h:link styleClass="btn btn-secondary" outcome="/aerogerador/pesquisa"
+                        rendered="#{aerogeradorBean.aerogerador.id ne null}"
+                        style="margin-left: 10px">
+                    <f:param name="id" value="#{aerogeradorBean.aerogerador.id}"  />
+                    <span class="fa fa-arrow-left"></span>
+                    Voltar
+                </h:link>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

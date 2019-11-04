@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/WEB-INF/template/layout.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{complexoEolicoBean.complexoEolico.id}"  />
+
+        <f:viewAction action="#{complexoEolicoBean.buscar}" if="#{param.id ne null}" />
+    </f:metadata>
+
+    <ui:define name="head">
+        #{complexoEolicoBean.complexoEolico.id eq null ? 'Novo' : 'Editar'} Complexo Eólico
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+            <div class="form-group">
+                <h:messages infoClass="alert alert-info"
+                            fatalClass="alert alert-danger" errorClass="alert alert-danger"
+                            style="list-style:none; margin:0; padding:0" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Nome <span style="color: red">*</span></label>
+                <input type="text" class="form-control" jsf:value="#{complexoEolicoBean.complexoEolico.nome}"
+                       jsf:required="true" jsf:requiredMessage="Nome: Campo obrigatório." jsf:label="Nome" />
+            </div>
+
+            <div class="form-group">
+                <label>UF </label>
+                <h:selectOneMenu id="uf" value="#{complexoEolicoBean.complexoEolico.uf}" class="form-control">
+                    <f:selectItem itemLabel="Selecione um estado..." itemValue="" />
+                    <f:selectItem itemLabel="AC" itemValue="Acre" />
+                    <f:selectItem itemLabel="AL" itemValue="Alagoas" />
+                    <f:selectItem itemLabel="AP" itemValue="Amapá" />
+                    <f:selectItem itemLabel="BA" itemValue="Bahia" />
+                    <f:selectItem itemLabel="CE" itemValue="Ceará" />
+                    <f:selectItem itemLabel="DF" itemValue="Distrito Federal" />
+                    <f:selectItem itemLabel="ES" itemValue="Espírito Santo" />
+                    <f:selectItem itemLabel="GO" itemValue="Goiás" />
+                    <f:selectItem itemLabel="MA" itemValue="Maranhão" />
+                    <f:selectItem itemLabel="MT" itemValue="Mato Grosso" />
+                    <f:selectItem itemLabel="MS" itemValue="Mato Grosso do Sul" />
+                    <f:selectItem itemLabel="MG" itemValue="Minas Gerais" />
+                    <f:selectItem itemLabel="PA" itemValue="Pará" />
+                    <f:selectItem itemLabel="PB" itemValue="Paraíba" />
+                    <f:selectItem itemLabel="PR" itemValue="Paraná" />
+                    <f:selectItem itemLabel="PE" itemValue="Pernambuco" />
+                    <f:selectItem itemLabel="PI" itemValue="Piauí" />
+                    <f:selectItem itemLabel="RJ" itemValue="Rio de Janeiro" />
+                    <f:selectItem itemLabel="RN" itemValue="Rio Grande do Norte" />
+                    <f:selectItem itemLabel="RS" itemValue="Rio Grande do Sul" />
+                    <f:selectItem itemLabel="RO" itemValue="Rondônia" />
+                    <f:selectItem itemLabel="RR" itemValue="Roraima" />
+                    <f:selectItem itemLabel="SC" itemValue="Santa Catarina" />
+                    <f:selectItem itemLabel="SP" itemValue="São Paulo" />
+                    <f:selectItem itemLabel="SE" itemValue="Sergipe" />
+                    <f:selectItem itemLabel="TO" itemValue="Tocantins" />
+                </h:selectOneMenu>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Identificador</label>
+                <input type="text" class="form-control" jsf:value="#{complexoEolicoBean.complexoEolico.identificador}" />
+            </div>
+
+            <div class="form-group">
+                <h:commandLink action="#{complexoEolicoBean.salvar}"
+                        class="btn btn-primary">
+                    <span class="fa fa-save"></span> Salvar
+                </h:commandLink>
+
+                <h:link styleClass="btn btn-secondary" outcome="/complexoEolico/pesquisa"
+                        rendered="#{complexoEolicoBean.complexoEolico.id ne null}"
+                        style="margin-left: 10px">
+                    <span class="fa fa-arrow-left"></span>
+                    Voltar
+                </h:link>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
