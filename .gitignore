@@ -1,4 +1,10 @@
-.idea
-classes/
+.DS_Store
+.classpath
+.project
+.settings/
+.metadata/
 target/
-src/main/resources/META-INF/
+tmp
+local.properties
+.git.algaworks
+.git.github
