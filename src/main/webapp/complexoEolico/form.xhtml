@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:jsf="http://xmlns.jcp.org/jsf"
-                template="/WEB-INF/template/layout.xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<ui:composition template="/WEB-INF/template/layout.xhtml">
 
     <f:metadata>
         <f:viewParam name="id" value="#{complexoEolicoBean.complexoEolico.id}"  />
@@ -70,7 +71,7 @@
 
             <div class="form-group">
                 <h:commandLink action="#{complexoEolicoBean.salvar}"
-                        class="btn btn-primary">
+                               class="btn btn-primary">
                     <span class="fa fa-save"></span> Salvar
                 </h:commandLink>
 
@@ -83,4 +84,6 @@
             </div>
         </h:form>
     </ui:define>
+
 </ui:composition>
+</html>

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="windfarm:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>windfarm</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="windfarm.war">
+      <element id="artifact" artifact-name="windfarm:war exploded" />
+    </root>
+  </artifact>
+</component>

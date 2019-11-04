@@ -1,0 +1,50 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="windfarm:war exploded">
+    <output-path>$PROJECT_DIR$/target/windfarm</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>windfarm</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="windfarm" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.jboss.weld.servlet:weld-servlet:2.4.1.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:5.2.4.Final" />
+          <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.3.0.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final" />
+          <element id="library" level="project" name="Maven: org.javassist:javassist:3.20.0-GA" />
+          <element id="library" level="project" name="Maven: antlr:antlr:2.7.7" />
+          <element id="library" level="project" name="Maven: org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1" />
+          <element id="library" level="project" name="Maven: org.jboss:jandex:2.0.0.Final" />
+          <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.3.0" />
+          <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
+          <element id="library" level="project" name="Maven: org.hibernate.common:hibernate-commons-annotations:5.0.1.Final" />
+          <element id="library" level="project" name="Maven: javax.enterprise:cdi-api:1.1" />
+          <element id="library" level="project" name="Maven: javax.el:el-api:2.2" />
+          <element id="library" level="project" name="Maven: org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.1_spec:1.0.0.Beta1" />
+          <element id="library" level="project" name="Maven: javax.annotation:jsr250-api:1.0" />
+          <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-validator:5.2.4.Final" />
+          <element id="library" level="project" name="Maven: javax.validation:validation-api:1.1.0.Final" />
+          <element id="library" level="project" name="Maven: com.sun.faces:jsf-api:2.2.20" />
+          <element id="library" level="project" name="Maven: com.sun.faces:jsf-impl:2.2.20" />
+          <element id="library" level="project" name="Maven: org.postgresql:postgresql:9.4-1201-jdbc4" />
+          <element id="library" level="project" name="Maven: org.webjars:bootstrap:4.3.1" />
+          <element id="library" level="project" name="Maven: org.webjars:popper.js:1.14.3" />
+          <element id="library" level="project" name="Maven: org.webjars:font-awesome:4.7.0" />
+          <element id="library" level="project" name="Maven: org.webjars:jquery:1.12.4" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/windfarm/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="windfarm/web/Web" />
+    </root>
+  </artifact>
+</component>

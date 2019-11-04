@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<ui:composition template="/WEB-INF/template/layout.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{complexoEolicoBean.complexoEolico.id}"  />
+
+        <f:viewAction action="#{complexoEolicoBean.buscar}" if="#{param.id ne null}" />
+
+        <!--        <f:viewAction action="#{complexoEolicoBean.iniciar}" />-->
+    </f:metadata>
+
+    <ui:define name="head">
+        #{complexoEolicoBean.complexoEolico.nome}
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+            <div class="form-group">
+                <h:messages infoClass="alert alert-info"
+                            fatalClass="alert alert-danger" errorClass="alert alert-danger"
+                            style="list-style:none; margin:0; padding:0" />
+            </div>
+
+            <div class="row">
+
+                <div class="form-group col-md-4">
+                    <label class="control-label">Nome</label>
+                    <input type="text" class="form-control" jsf:value="#{complexoEolicoBean.complexoEolico.nome}"
+                           jsf:required="true" jsf:label="Nome" disabled="disabled"/>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label class="control-label">UF</label>
+                    <input type="text" class="form-control" jsf:value="#{complexoEolicoBean.complexoEolico.uf}" disabled="disabled" />
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label class="control-label">Identificador</label>
+                    <input type="text" class="form-control" jsf:value="#{complexoEolicoBean.complexoEolico.identificador}"
+                           disabled="disabled"/>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <button jsf:action="#{complexoEolicoBean.remover(complexoEolicoBean.complexoEolico.id)}" class="btn btn-danger"
+                        type="submit" style="margin-left: 10px">
+                    <span class="fa fa-save"></span> Remover
+                </button>
+
+                <h:link styleClass="btn btn-secondary" outcome="/complexoEolico/pesquisa"
+                        rendered="#{complexoEolicoBean.complexoEolico.id ne null}"
+                        style="margin-left: 10px">
+                    <span class="fa fa-arrow-left"></span>
+                    Voltar
+                </h:link>
+            </div>
+        </h:form>
+
+        <h2 class="text-center">
+            Lista de Parques Eólicos
+        </h2>
+
+        <h:form class="form-horizontal">
+            <div class="form-group">
+                <h:messages infoClass="alert alert-info"
+                            fatalClass="alert alert-danger"
+                            warnClass="alert alert-warning"
+                            errorClass="alert alert-danger"
+                            style="list-style:none; margin:0; padding:0" />
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-6 col-sm-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               placeholder="Faça uma pesquisa por nome..."
+                               jsf:value="#{parqueEolicoBean.termoPesquisa}" jsf:required="true"
+                               jsf:label="Campo pesquisa"/>
+                        <span class="input-group-btn">
+							<button class="btn btn-default" type="submit"
+                                    jsf:actionListener="#{parqueEolicoBean.pesquisar}">
+								<span class="fa fa-search"></span>
+								Pesquisar
+							</button>
+						</span>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+
+        <h:dataTable styleClass="table table-bordered" var="parque"
+                     value="#{complexoEolicoBean.complexoEolico.parques}">
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Nome" />
+                </f:facet>
+
+                <h:outputText value="#{parque.nome}" />
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Latitude" />
+                </f:facet>
+
+                <h:outputText value="#{parque.latitude}" />
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Longitude" />
+                </f:facet>
+
+                <h:outputText value="#{parque.longitude}" />
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Pontencia Instalada" />
+                </f:facet>
+
+                <h:outputText value="#{parque.potencia_instalada}" />
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Ações" />
+                </f:facet>
+
+                <h:form>
+                    <h:link outcome="/parqueEolico/detalhes" styleClass="btn-link">
+                        <f:param name="id" value="#{parque.id}" />
+                        <span class="fa fa-lg fa-eye"></span>
+                    </h:link>
+
+                    <h:link outcome="/parqueEolico/form" styleClass="btn-link">
+                        <f:param name="id" value="#{parque.id}" />
+                        <span class="fa fa-lg fa-edit"></span>
+                    </h:link>
+                    <!--                    <h:link outcome="/parqueEolico/remover" styleClass="btn-link">-->
+                    <!--                        <f:param name="id" value="#{parque.id}" />-->
+                    <!--                        <span class="fa fa-lg fa-trash"></span>-->
+                    <!--                    </h:link>-->
+                </h:form>
+            </h:column>
+        </h:dataTable>
+    </ui:define>
+
+</ui:composition>
+
+</html>
